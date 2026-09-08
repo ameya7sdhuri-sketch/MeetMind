@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <script>
+    (function() {
+      const t = localStorage.getItem('meetmind_theme');
+      if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
+      } else {
+        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
+      }
+    })();
+  </script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>MeetMind — Turn Every Meeting Into Action</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+
+  <!-- Supabase Auth CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Tailwind CSS Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#4648d4",
+            "primary-container": "#6063ee",
+            "primary-fixed": "#e1e0ff",
+            "on-primary": "#ffffff",
+            "on-primary-fixed": "#07006c",
+            "secondary": "#4b41e1",
+            "secondary-container": "#645efb",
+            "secondary-fixed": "#e2dfff",
+            "tertiary": "#006577",
+            "tertiary-container": "#008096",
+            "tertiary-fixed": "#acedff",
+            "background": "#faf8ff",
+            "surface": "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "surface-bright": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#464554",
+            "outline": "#767586",
+            "outline-variant": "#c7c4d7",
+            "error": "#ba1a1a"
+          },
+          fontFamily: {
+            "body-md": ["Geist", "sans-serif"],
+            "headline-xl": ["Geist", "sans-serif"],
+            "display-hero": ["Geist", "sans-serif"],
+            "code-sm": ["JetBrains Mono", "monospace"]
+          },
+          spacing: {
+            "container-max": "80rem",
+            "space-2xs": "0.25rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-2xl": "3rem",
+            "space-3xl": "4rem",
+            "gutter-desktop": "1.5rem"
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Modular Stylesheets -->
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
+</head>
+<body class="bg-background font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+  <!-- NAVBAR -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+    <div class="h-16 max-w-container-max mx-auto px-gutter-desktop flex items-center justify-between gap-4">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-2 shrink-0">
+        <a class="flex items-center gap-2" href="index.html">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-on-primary font-bold shadow-sm">
+            <span class="material-symbols-outlined text-[20px]">auto_awesome</span>
+          </div>
+          <span class="font-headline-sm text-lg font-bold tracking-tight text-on-surface">MeetMind</span>
+        </a>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-1.5 sm:gap-2">
+        <a class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium tracking-wide whitespace-nowrap active-nav-item" href="index.html">Home</a>
+        <a class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" href="upload.html">Upload & Process</a>
+        <a class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" href="transcript.html">Meeting Workspace</a>
+        <a class="px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-medium text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-all whitespace-nowrap" href="ai-assistant.html">AI Assistant</a>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+        <button aria-label="Toggle Light and Dark Mode" class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:text-on-surface hover:bg-surface-container transition-colors theme-toggle-btn shrink-0" type="button">
+          <span class="material-symbols-outlined text-[20px] dark:hidden">light_mode</span>
+          <span class="material-symbols-outlined text-[20px] hidden dark:inline-block">dark_mode</span>
+        </button>
+
+        <a class="hidden sm:inline-flex items-center justify-center px-4 py-2 rounded-xl bg-primary text-on-primary font-semibold text-xs sm:text-sm shadow-sm hover:bg-primary-container transition-all btn-glow-effect whitespace-nowrap shrink-0" href="upload.html">
+          Upload Meeting
+        </a>
+
+        <a id="nav-signin-btn" class="auth-signin-btn inline-flex items-center justify-center px-3.5 py-2 rounded-xl border border-outline-variant/50 text-on-surface font-semibold text-xs sm:text-sm hover:bg-surface-container transition-colors whitespace-nowrap shrink-0" href="login.html">
+          Sign In
+        </a>
+
+        <button id="nav-user-pill" type="button" onclick="window.authManager.signOutConfirm()" class="auth-user-pill hidden inline-flex items-center gap-1.5 px-3 py-2 rounded-xl border border-emerald-500/30 bg-surface-container-high text-on-surface text-xs font-semibold hover:bg-surface-container transition-all whitespace-nowrap shrink-0">
+          <span class="material-symbols-outlined text-[16px] text-emerald-500">account_circle</span>
+          <span class="user-display-email truncate max-w-[120px]">User</span>
+          <span class="material-symbols-outlined text-[14px] text-on-surface-variant">logout</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="w-full pt-16 bg-surface min-h-[calc(100vh-80px)]">
+    <div class="flex flex-col w-full">
+      
+      <!-- HERO SECTION -->
+      <section class="relative w-full overflow-hidden pb-space-3xl pt-space-xl sm:pt-space-2xl">
+        <!-- Ambient Glow Backdrop -->
+        <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[340px] bg-primary-fixed/50 dark:bg-primary/10 rounded-full blur-3xl pointer-events-none -z-10"></div>
+        
+        <div class="max-w-container-max mx-auto px-gutter-desktop">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+            
+            <!-- Left Copy & Actions -->
+            <div class="lg:col-span-6 flex flex-col items-start gap-space-md">
+              <div class="inline-flex items-center gap-space-2xs px-space-sm py-1 rounded-full bg-surface-container-high text-primary dark:text-primary-fixed glow-badge">
+                <span class="material-symbols-outlined text-[15px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                <span class="font-label-sm text-xs font-semibold uppercase tracking-wider">AI-POWERED MEETING INTELLIGENCE</span>
+              </div>
+              
+              <h1 class="font-display-hero text-4xl sm:text-5xl font-extrabold text-on-surface tracking-tight leading-tight">
+                Turn Every Meeting <br class="hidden sm:inline">
+                <span class="text-primary dark:text-primary-fixed">Into Action.</span>
+              </h1>
+              
+              <p class="font-body-lg text-base text-on-surface-variant max-w-xl leading-relaxed">
+                Upload your meeting recording and let MeetMind turn conversations into clear transcripts, executive decisions, assigned action items, deadlines, and AI-driven answers.
+              </p>
+              
+              <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+                <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-on-primary font-semibold text-sm shadow-md hover:bg-primary-container transition-all btn-glow-effect" href="upload.html">
+                  <span>Upload a Meeting</span>
+                  <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                </a>
+                
+                <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-surface-container-lowest text-on-surface font-semibold text-sm shadow-sm hover:bg-surface-container transition-colors" href="transcript.html">
+                  <span class="material-symbols-outlined text-[18px] text-on-surface-variant">play_circle</span>
+                  <span>Explore Demo Analysis</span>
+                </a>
+              </div>
+
+              <!-- Micro Proof Stats -->
+              <div class="pt-space-md grid grid-cols-3 gap-space-md w-full max-w-md border-t border-outline-variant/30 mt-4">
+                <div>
+                  <p class="font-headline-sm text-2xl text-on-surface font-bold">99.4%</p>
+                  <p class="font-body-sm text-xs text-on-surface-variant">Transcript Accuracy</p>
+                </div>
+                <div>
+                  <p class="font-headline-sm text-2xl text-on-surface font-bold">3.8x</p>
+                  <p class="font-body-sm text-xs text-on-surface-variant">Faster Follow-ups</p>
+                </div>
+                <div>
+                  <p class="font-headline-sm text-2xl text-on-surface font-bold">0 hrs</p>
+                  <p class="font-body-sm text-xs text-on-surface-variant">Rewatching Calls</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Visual Component -->
+            <div class="lg:col-span-6 relative mt-space-md lg:mt-0">
+              <div class="relative w-full rounded-2xl overflow-hidden shadow-xl bg-surface-container">
+                <img alt="Professional team meeting with audio analysis" class="w-full h-[440px] sm:h-[500px] object-cover object-center shadow-2xl transition-all duration-300" src="assets/images/hero_meeting.jpg">
+                <div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 via-transparent to-transparent"></div>
+              </div>
+
+              <!-- Floating Context Card 1 -->
+              <div class="absolute top-6 left-4 sm:left-6 max-w-xs p-4 rounded-2xl bg-surface-container-lowest/95 dark:bg-[#141b2d]/95 backdrop-blur-xl shadow-2xl border border-outline-variant/30 dark:border-slate-700/80 animate-float-1 hidden sm:block z-10">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
+                  <span class="text-xs font-bold text-on-surface dark:text-white">Action Item Detected</span>
+                </div>
+                <p class="text-xs text-on-surface-variant dark:text-slate-300 leading-relaxed">"Alex will finalize Spring Boot CORS security config by Friday."</p>
+              </div>
+
+              <!-- Floating Context Card 2 -->
+              <div class="absolute bottom-6 right-4 sm:right-6 max-w-xs p-4 rounded-2xl bg-surface-container-lowest/95 dark:bg-[#141b2d]/95 backdrop-blur-xl shadow-2xl border border-outline-variant/30 dark:border-slate-700/80 animate-float-2 hidden sm:block z-10">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="material-symbols-outlined text-[18px] text-primary dark:text-indigo-400">auto_awesome</span>
+                  <span class="text-xs font-bold text-on-surface dark:text-white">AI Meeting Summary</span>
+                </div>
+                <p class="text-xs text-on-surface-variant dark:text-slate-300 leading-relaxed">Key decision: Adopted Supabase Auth & Java Spring Boot REST API for zero key exposure.</p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURE CARDS SECTION (3D ROTATING FAN CARD DECK STACK) -->
+      <section class="py-24 relative overflow-hidden bg-gradient-to-b from-surface via-surface-container-lowest/90 to-surface dark:from-[#0b0f19] dark:via-[#111727] dark:to-[#0b0f19]">
+        
+        <!-- Ambient Radial Glow Accents -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-primary/10 dark:bg-indigo-500/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-container-max mx-auto px-gutter-desktop relative z-10">
+          
+          <!-- Header Row with Title -->
+          <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold mb-3 shadow-sm">
+                <span class="material-symbols-outlined text-[16px] text-primary">touch_app</span>
+                Tap Any Card to Rotate
+              </div>
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-on-surface tracking-tight">
+                Designed for High-Impact Collaboration
+              </h2>
+            </div>
+          </div>
+
+          <!-- 3D ROTATING FAN CARD DECK STACK CONTAINER -->
+          <div class="relative w-full h-[460px] sm:h-[480px] flex items-center justify-center perspective-[1200px] select-none" id="deck-viewport">
+            
+            <!-- Card 1: Automated Speech Transcription -->
+            <div class="rotating-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] p-8 rounded-3xl bg-surface-container-lowest dark:bg-[#141b2d] border border-outline-variant/30 dark:border-slate-800 shadow-2xl cursor-pointer group overflow-hidden flex flex-col justify-between" data-index="0" onclick="handleCardClick(0)">
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-indigo-500 to-purple-500"></div>
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-14 h-14 rounded-2xl bg-primary-fixed text-on-primary-fixed flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">graphic_eq</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-wider text-primary mb-1 block font-mono">TRANSCRIPTION</span>
+                <h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-primary transition-colors">Automated Speech-to-Text</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  High-precision multi-speaker speech recognition with automatic diarization, exact timestamps, and interactive line-by-line playback seeking.
+                </p>
+              </div>
+              <div class="mt-8 pt-4 border-t border-outline-variant/20 flex items-center justify-between text-xs font-semibold text-primary">
+                <span>99.4% Precision Diarization</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+
+            <!-- Card 2: Executive Summaries & Tasks -->
+            <div class="rotating-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] p-8 rounded-3xl bg-surface-container-lowest dark:bg-[#141b2d] border border-outline-variant/30 dark:border-slate-800 shadow-2xl cursor-pointer group overflow-hidden flex flex-col justify-between" data-index="1" onclick="handleCardClick(1)">
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-teal-500 via-emerald-500 to-primary"></div>
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-14 h-14 rounded-2xl bg-tertiary-fixed text-on-tertiary-fixed flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">task_alt</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-wider text-tertiary mb-1 block font-mono">ACTION ITEMS</span>
+                <h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-tertiary transition-colors">Executive Summaries & Tasks</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  Instantly extract key executive decisions, assigned task checklists, and high-level meeting takeaways without manual note-taking.
+                </p>
+              </div>
+              <div class="mt-8 pt-4 border-t border-outline-variant/20 flex items-center justify-between text-xs font-semibold text-tertiary">
+                <span>Auto-Assignee Detection</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+
+            <!-- Card 3: Interactive AI Assistant -->
+            <div class="rotating-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] p-8 rounded-3xl bg-surface-container-lowest dark:bg-[#141b2d] border border-outline-variant/30 dark:border-slate-800 shadow-2xl cursor-pointer group overflow-hidden flex flex-col justify-between" data-index="2" onclick="handleCardClick(2)">
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-purple-500 via-secondary to-pink-500"></div>
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-14 h-14 rounded-2xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">auto_awesome</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-wider text-secondary mb-1 block font-mono">AI ASSISTANT</span>
+                <h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-secondary transition-colors">Context-Aware AI Assistant</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  Ask questions directly about your call and receive instant answers backed by verifiable timestamp citations and speaker references.
+                </p>
+              </div>
+              <div class="mt-8 pt-4 border-t border-outline-variant/20 flex items-center justify-between text-xs font-semibold text-secondary">
+                <span>Timestamp Citations</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+
+            <!-- Card 4: Speaker Diarization & Analytics -->
+            <div class="rotating-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] p-8 rounded-3xl bg-surface-container-lowest dark:bg-[#141b2d] border border-outline-variant/30 dark:border-slate-800 shadow-2xl cursor-pointer group overflow-hidden flex flex-col justify-between" data-index="3" onclick="handleCardClick(3)">
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-500 via-orange-500 to-red-500"></div>
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-14 h-14 rounded-2xl bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">insights</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-1 block font-mono">ANALYTICS</span>
+                <h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-amber-500 transition-colors">Engagement & Talk Ratio</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  Analyze speaker talk-time percentages, sentiment tone, and call engagement metrics to improve team collaboration.
+                </p>
+              </div>
+              <div class="mt-8 pt-4 border-t border-outline-variant/20 flex items-center justify-between text-xs font-semibold text-amber-600 dark:text-amber-400">
+                <span>Sentiment Tracking</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+
+            <!-- Card 5: Zero-Persistence Security & Export -->
+            <div class="rotating-card absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] sm:w-[420px] p-8 rounded-3xl bg-surface-container-lowest dark:bg-[#141b2d] border border-outline-variant/30 dark:border-slate-800 shadow-2xl cursor-pointer group overflow-hidden flex flex-col justify-between" data-index="4" onclick="handleCardClick(4)">
+              <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500"></div>
+              <div>
+                <div class="flex items-center justify-between mb-6">
+                  <div class="w-14 h-14 rounded-2xl bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[28px]">security</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400 mb-1 block font-mono">PRIVACY & EXPORT</span>
+                <h3 class="text-2xl font-bold text-on-surface mb-3 group-hover:text-emerald-500 transition-colors">Zero-Storage Privacy Policy</h3>
+                <p class="text-sm text-on-surface-variant leading-relaxed">
+                  Recordings are processed in memory and encrypted. Export transcripts to TXT or Markdown instantly without long-term cloud storage.
+                </p>
+              </div>
+              <div class="mt-8 pt-4 border-t border-outline-variant/20 flex items-center justify-between text-xs font-semibold text-emerald-600 dark:text-emerald-400">
+                <span>1-Click Markdown Export</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Pagination Pill Dots Bar -->
+          <div class="flex items-center justify-center gap-3 mt-10" id="deck-pagination-dots">
+            <!-- Dynamically rendered active dots -->
+          </div>
+
+        </div>
+      </section>
+
+          <!-- Workspace Analytics High-Res Showcase Banner (FULL WIDTH & SPACIOUS) -->
+          <div class="mt-12 rounded-3xl overflow-hidden border border-outline-variant/40 shadow-xl bg-surface-container-lowest grid grid-cols-1 lg:grid-cols-12 gap-0">
+            <div class="lg:col-span-6 p-8 sm:p-12 lg:p-14 flex flex-col justify-center items-start gap-5">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-fixed text-on-primary-fixed text-xs font-semibold">
+                <span class="material-symbols-outlined text-[16px]">graphic_eq</span>
+                Live Audio Waveform & Intelligence
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight leading-tight">
+                Real-Time Meeting Insights & Waveform Sync
+              </h3>
+              <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+                Every meeting is transformed into an interactive waveform canvas. Click any timestamp or waveform bar to jump directly to key speaker moments and review decisions in context.
+              </p>
+              <a href="transcript.html" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-primary text-on-primary text-sm font-semibold shadow-md hover:bg-primary-container transition-all btn-glow-effect mt-2">
+                <span>View Interactive Workspace</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </a>
+            </div>
+            <div class="lg:col-span-6 min-h-[320px] lg:min-h-[420px] relative overflow-hidden bg-surface-container">
+              <img alt="High resolution audio waveform workspace analytics" class="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105" src="assets/images/workspace_analytics.jpg">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-surface-container py-8">
+    <div class="max-w-container-max mx-auto px-gutter-desktop flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-bold text-on-surface">MeetMind</span>
+        <span class="text-xs text-on-surface-variant">• AI Meeting Intelligence Platform</span>
+      </div>
+      <p class="text-xs text-on-surface-variant">© 2026 MeetMind Inc. Built with Vanilla JS & Spring Boot REST API.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/config.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+/* MeetMind Responsive Design Stylesheet */
+
+/* Mobile Enhancements (< 640px) */
+@media (max-width: 639px) {
+  .hero-headline {
+    font-size: 2.25rem !important;
+    line-height: 2.75rem !important;
+  }
+  
+  .transcript-layout {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .ai-chat-container {
+    height: calc(100vh - 180px) !important;
+  }
+
+  .floating-card-desktop {
+    display: none !important;
+  }
+}
+
+/* Tablet Adjustments (640px to 1023px) */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .transcript-sidebar {
+    width: 100% !important;
+  }
+}
+
+/* Print Utilities */
+@media print {
+  header, footer, .no-print {
+    display: none !important;
+  }
+  main {
+    padding-top: 0 !important;
+  }
+}

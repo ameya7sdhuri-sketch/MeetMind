@@ -1,0 +1,426 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "on-secondary": "#ffffff",
+          "on-secondary-fixed-variant": "#3323cc",
+          "on-primary-fixed-variant": "#2f2ebe",
+          "surface-variant": "#dae2fd",
+          "on-tertiary-fixed-variant": "#004e5c",
+          "on-tertiary-fixed": "#001f26",
+          "surface-dim": "#d2d9f4",
+          "background": "#faf8ff",
+          "surface-container-highest": "#dae2fd",
+          "outline-variant": "#c7c4d7",
+          "on-primary-container": "#fffbff",
+          "surface-bright": "#faf8ff",
+          "on-primary-fixed": "#07006c",
+          "on-surface": "#131b2e",
+          "inverse-on-surface": "#eef0ff",
+          "inverse-surface": "#283044",
+          "on-secondary-fixed": "#0f0069",
+          "error": "#ba1a1a",
+          "outline": "#767586",
+          "surface-container": "#eaedff",
+          "on-surface-variant": "#464554",
+          "secondary-fixed-dim": "#c3c0ff",
+          "on-secondary-container": "#fffbff",
+          "surface-container-high": "#e2e7ff",
+          "tertiary-container": "#008096",
+          "primary-fixed": "#e1e0ff",
+          "on-primary": "#ffffff",
+          "surface": "#faf8ff",
+          "tertiary-fixed-dim": "#4cd7f6",
+          "on-tertiary-container": "#f9fdff",
+          "tertiary": "#006577",
+          "inverse-primary": "#c0c1ff",
+          "secondary-fixed": "#e2dfff",
+          "surface-container-lowest": "#ffffff",
+          "on-tertiary": "#ffffff",
+          "secondary": "#4b41e1",
+          "primary": "#4648d4",
+          "primary-container": "#6063ee",
+          "secondary-container": "#645efb",
+          "on-error-container": "#93000a",
+          "tertiary-fixed": "#acedff",
+          "surface-tint": "#494bd6",
+          "on-error": "#ffffff",
+          "error-container": "#ffdad6",
+          "on-background": "#131b2e",
+          "primary-fixed-dim": "#c0c1ff",
+          "surface-container-low": "#f2f3ff"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-xs": "0.5rem",
+          "space-3xs": "0.125rem",
+          "space-3xl": "4rem",
+          "space-sm": "0.75rem",
+          "space-4xl": "6rem",
+          "container-max": "80rem",
+          "space-2xs": "0.25rem",
+          "gutter-desktop": "1.5rem",
+          "space-xl": "2rem",
+          "space-lg": "1.5rem",
+          "space-md": "1rem",
+          "gutter-mobile": "1rem",
+          "space-2xl": "3rem"
+        },
+        "fontFamily": {
+          "headline-sm": [
+            "Geist"
+          ],
+          "body-lg": [
+            "Geist"
+          ],
+          "headline-xl": [
+            "Geist"
+          ],
+          "body-md": [
+            "Geist"
+          ],
+          "display-hero": [
+            "Geist"
+          ],
+          "headline-lg": [
+            "Geist"
+          ],
+          "label-md": [
+            "Geist"
+          ],
+          "body-sm": [
+            "Geist"
+          ],
+          "label-sm": [
+            "Geist"
+          ],
+          "display-hero-mobile": [
+            "Geist"
+          ],
+          "headline-md": [
+            "Geist"
+          ],
+          "headline-xl-mobile": [
+            "Geist"
+          ],
+          "code-sm": [
+            "JetBrains Mono"
+          ]
+        },
+        "fontSize": {
+          "headline-sm": [
+            "18px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "-0.01em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-lg": [
+            "16px",
+            {
+              "lineHeight": "26px",
+              "letterSpacing": "-0.005em",
+              "fontWeight": "400"
+            }
+          ],
+          "headline-xl": [
+            "40px",
+            {
+              "lineHeight": "48px",
+              "letterSpacing": "-0.025em",
+              "fontWeight": "600"
+            }
+          ],
+          "body-md": [
+            "14px",
+            {
+              "lineHeight": "22px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ],
+          "display-hero": [
+            "56px",
+            {
+              "lineHeight": "64px",
+              "letterSpacing": "-0.03em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-lg": [
+            "28px",
+            {
+              "lineHeight": "36px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "label-md": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.01em",
+              "fontWeight": "500"
+            }
+          ],
+          "body-sm": [
+            "13px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0.005em",
+              "fontWeight": "400"
+            }
+          ],
+          "label-sm": [
+            "11px",
+            {
+              "lineHeight": "16px",
+              "letterSpacing": "0.04em",
+              "fontWeight": "600"
+            }
+          ],
+          "display-hero-mobile": [
+            "36px",
+            {
+              "lineHeight": "44px",
+              "letterSpacing": "-0.025em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-md": [
+            "22px",
+            {
+              "lineHeight": "30px",
+              "letterSpacing": "-0.015em",
+              "fontWeight": "600"
+            }
+          ],
+          "headline-xl-mobile": [
+            "30px",
+            {
+              "lineHeight": "38px",
+              "letterSpacing": "-0.02em",
+              "fontWeight": "600"
+            }
+          ],
+          "code-sm": [
+            "12px",
+            {
+              "lineHeight": "18px",
+              "letterSpacing": "0em",
+              "fontWeight": "400"
+            }
+          ]
+        }
+      },
+    },
+  }</script><style id="interactive-animations">@keyframes floatSlow{0%,100%{transform:translateY(0px)}50%{transform:translateY(-6px)}}@keyframes floatGentle{0%,100%{transform:translateY(0px)}50%{transform:translateY(-4px)}}@keyframes pulseGlow{0%,100%{opacity:0.9;transform:scale(1)}50%{opacity:0.4;transform:scale(1.25)}}@keyframes cardShimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}.anim-float-1{animation:floatSlow 6s ease-in-out infinite}.anim-float-2{animation:floatSlow 7s ease-in-out infinite 1.5s}.anim-float-3{animation:floatGentle 5s ease-in-out infinite 0.8s}.anim-pulse-glow{animation:pulseGlow 2.5s ease-in-out infinite}.focus-glow:focus-within{box-shadow:0 0 0 3px rgba(70,72,212,0.18),0 4px 14px -2px rgba(70,72,212,0.12)}.interactive-lift{transition:all 0.25s cubic-bezier(0.16,1,0.3,1)}.interactive-lift:hover{transform:translateY(-2px);box-shadow:0 10px 25px -5px rgba(19,27,46,0.08),0 8px 10px -6px rgba(19,27,46,0.04)}@media (prefers-reduced-motion:reduce){.anim-float-1,.anim-float-2,.anim-float-3,.anim-pulse-glow,.interactive-lift{animation:none!important;transform:none!important}}</style></head><body class="bg-background font-body-md text-on-surface antialiased"><header class="fixed top-0 left-0 right-0 z-50 bg-surface/80 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="h-16 max-w-container-max mx-auto px-gutter-desktop flex items-center justify-between gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="Brand logo. - Primary color: #6366f1
+- Font: geist
+- Mode: dark
+- Roundness: rounded-sm
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U0xZas-gdxM47c5eq8m_C3_rRJPyYQUNABvvqiLTleci033DdEc0c6kEtiw7lUYwhx8njwAzhA7UosR8HrWcheRs7loFtpSXOfMnTqzp2aCmnUp8BCjT5bCh8mVT0FuCtdxrZt8bE4om2oXpJJ3QodZ5jzth-TPjaSO0hiArqGYvSY5ykII3gBB6Qd-eYp_fO_siTzTAjETM0A_b7YNwZka113he6z1R1qKKH-7YOMRiMBVBlA5WC3MSqo"><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight">MeetMind</span></div><nav class="hidden md:flex items-center gap-space-xs p-space-3xs rounded-xl" data-active-classes="bg-surface-container text-on-surface font-semibold rounded-xl"><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="overview" href="#">Overview</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="features" href="#">Features</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="how-it-works" href="#">How It Works</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="ai-assistant" href="#">AI Assistant</a><a class="px-space-md py-space-xs rounded-xl font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" data-path="pricing" href="#">Pricing</a></nav><div class="flex items-center gap-space-sm"><button class="w-9 h-9 rounded-xl flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">light_mode</span></button><a class="inline-flex items-center justify-center h-10 px-space-md bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md rounded-xl shadow-[0_1px_2px_rgba(99,102,241,0.3)] transition-all" data-path="upload-meeting" href="#">Upload a Meeting</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-16 bg-background"><div class="flex flex-col w-full">
+<section class="w-full min-h-[calc(100vh-4rem)] flex items-stretch p-space-md md:p-space-xl lg:p-space-2xl">
+<div class="max-w-container-max mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-space-lg lg:gap-space-2xl items-center">
+<!-- Left Column: Authentication Form -->
+<div class="lg:col-span-5 flex flex-col justify-center py-space-md lg:py-space-xl max-w-lg mx-auto w-full">
+<!-- Brand / Feature Tag -->
+<div class="flex items-center gap-space-xs mb-space-lg">
+<span class="inline-flex items-center gap-space-2xs px-space-sm py-space-3xs rounded-full bg-primary/10 text-primary font-label-sm text-label-sm anim-pulse-glow">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+            Single-session AI intelligence
+          </span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">v2.4.0</span>
+</div>
+<!-- Headline & Supporting Text -->
+<div class="flex flex-col gap-space-xs mb-space-xl">
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight">
+            Welcome back to MeetMind
+          </h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Log in to analyze your recordings, extract transcripts, and query verified meeting intelligence.
+          </p>
+</div>
+<!-- SSO & Social Auth Stack -->
+<div class="grid grid-cols-2 gap-space-sm mb-space-lg">
+<button class="group flex items-center justify-center gap-space-xs h-11 px-space-md bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md rounded-xl shadow-sm transition-all interactive-lift" type="button">
+<svg class="w-4 h-4" viewBox="0 0 24 24">
+<path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"></path>
+<path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"></path>
+<path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"></path>
+<path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z" fill="#EA4335"></path>
+</svg>
+<span class="">Google</span>
+</button>
+<button class="group flex items-center justify-center gap-space-xs h-11 px-space-md bg-surface-container-lowest hover:bg-surface-container-low text-on-surface font-label-md text-label-md rounded-xl shadow-sm transition-all interactive-lift" type="button"><svg class="w-4 h-4 shrink-0" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#f25022"></rect><rect x="11" y="1" width="9" height="9" fill="#7fba00"></rect><rect x="1" y="11" width="9" height="9" fill="#00a4ef"></rect><rect x="11" y="11" width="9" height="9" fill="#ffb900"></rect></svg><span class="">Microsoft</span></button>
+</div>
+<!-- Subtle Horizontal Divider -->
+<div class="relative flex items-center justify-center mb-space-lg">
+<div class="w-full h-px bg-surface-container-highest"></div>
+<span class="absolute bg-background px-space-sm font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">
+            or continue with work email
+          </span>
+</div>
+<!-- Auth Form -->
+<form class="flex flex-col gap-space-md" onsubmit="event.preventDefault();">
+<!-- Email Input -->
+<div class="flex flex-col gap-space-2xs">
+<label class="font-label-md text-label-md text-on-surface flex justify-between items-center">
+<span class="">Work Email</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">SSO detected auto</span>
+</label>
+<div class="relative flex items-center focus-glow">
+<span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px] pointer-events-none">mail</span>
+<input class="w-full h-11 pl-10 pr-space-md rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm transition-all" placeholder="name@company.com" required="" type="email" value="elena.rostova@mindscale.ai">
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-space-2xs">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface">Password</label>
+<a class="font-label-sm text-label-sm text-primary hover:text-primary-container transition-colors" href="#">
+                Forgot password?
+              </a>
+</div>
+<div class="relative flex items-center focus-glow">
+<span class="material-symbols-outlined absolute left-space-sm text-on-surface-variant text-[18px] pointer-events-none">lock</span>
+<input class="w-full h-11 pl-10 pr-10 rounded-xl bg-surface-container-lowest text-on-surface font-body-md text-body-md placeholder:text-on-surface-variant/50 focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-sm transition-all" id="password-input" placeholder="••••••••••••" required="" type="password" value="SecureEnterpriseSync2025!">
+<button class="absolute right-space-sm text-on-surface-variant hover:text-on-surface p-1 rounded-lg transition-colors" id="toggle-password" onclick="const p = document.getElementById('password-input'); const icon = document.getElementById('toggle-icon'); if(p.type==='password'){p.type='text'; icon.innerText='visibility_off';}else{p.type='password'; icon.innerText='visibility';}" type="button">
+<span class="material-symbols-outlined text-[18px]" id="toggle-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Session Privacy & Options -->
+<div class="flex items-center justify-between pt-space-2xs">
+<label class="flex items-center gap-space-xs cursor-pointer select-none">
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-primary/20 accent-primary" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface">Remember this device</span>
+</label>
+<div class="flex items-center gap-space-3xs text-on-surface-variant">
+<span class="material-symbols-outlined text-[14px]">lock_clock</span>
+<span class="font-code-sm text-code-sm">Ephemeral session</span>
+</div>
+</div>
+<!-- Primary Submit Action -->
+<button class="mt-space-sm w-full h-11 flex items-center justify-center gap-space-xs rounded-xl bg-primary hover:bg-primary-container text-on-primary font-label-md text-label-md shadow-md hover:shadow-lg transition-all active:scale-[0.99] interactive-lift" type="submit">
+<span class="">Sign In to MeetMind</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Access / Demo Footnote -->
+<div class="mt-space-lg text-center">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+            Don't have an enterprise account? 
+            <a class="font-label-md text-label-md text-primary hover:underline ml-1" href="#">Request access</a> 
+            or 
+            <a class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors ml-1" href="#">try interactive demo</a>
+</p>
+</div>
+<!-- Compliance & Security Trust Badges -->
+<div class="mt-space-2xl pt-space-md flex flex-wrap items-center justify-center gap-x-space-md gap-y-space-2xs text-on-surface-variant font-label-sm text-label-sm">
+<div class="flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-primary text-[15px]">verified_user</span>
+<span class="">SOC-2 Type II</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-tertiary text-[15px]">timer_off</span>
+<span class="">Zero Data Retention</span>
+</div>
+<span class="text-outline-variant">•</span>
+<div class="flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-secondary text-[15px]">shield</span>
+<span class="">256-bit In-Transit</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Visual Product Showcase & Ambient Context -->
+<div class="lg:col-span-7 h-full min-h-[520px] lg:min-h-[640px] flex items-center justify-center relative">
+<div class="relative w-full h-full rounded-2xl overflow-hidden shadow-xl bg-surface-container-high flex flex-col justify-between p-space-lg lg:p-space-xl">
+<!-- Background Professional Executive Meeting Photo -->
+<img class="absolute inset-0 w-full h-full object-cover object-center" data-alt="An executive product team seated along a wooden conference table in a modern sunlit corner office with panoramic city skyline windows. A focused male tech lead in a sharp navy blazer engages with his laptop while colleagues confer warmly in the glass-partitioned background. Cool natural daylight and professional architectural minimalism." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVQeClCcmOyI5sRw1cttuhcK5KQrF7rqzn6ARQv66QEVNyMeXPWDskFa9esz33-sxDGRBmrxZ0daNrIhzTbji986FtlPL1AkWfHDkliivSUGwPJb1kbaDYAJ02A9z6v3qLO_ZiPfFK4vzQI7xll9TAqz2GNXQgglgPQzlD3dVlfTSyjUelkvwZ0CAKjTbcT4Tu7PmNvwbGoO0ut0-M5psr67Wl9uw8fMLS2JCUB99PiYRYKj7jNVe6rg">
+<!-- Ambient Gradient Scrim -->
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface/90 via-inverse-surface/40 to-transparent"></div>
+<div class="absolute inset-0 bg-primary/10 mix-blend-overlay"></div>
+<!-- Top Meta Bar Over Image -->
+<div class="relative z-10 flex items-center justify-between w-full">
+<div class="inline-flex items-center gap-space-xs px-space-md py-space-2xs rounded-full bg-surface/90 backdrop-blur-md shadow-sm anim-float-1">
+<span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface font-semibold">Live Architecture Sync</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant">38:14</span>
+</div>
+<div class="flex items-center gap-space-2xs px-space-sm py-space-2xs rounded-xl bg-inverse-surface/60 backdrop-blur-md text-inverse-on-surface font-code-sm text-code-sm anim-float-3">
+<span class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim">query_stats</span>
+<span class="">Grounding accuracy 99.8%</span>
+</div>
+</div>
+<!-- Floating Semantic Intelligence Overlays -->
+<div class="relative z-10 flex flex-col gap-space-sm my-auto max-w-md w-full">
+<!-- Transcript Float Card -->
+<div class="p-space-md rounded-xl bg-surface/95 backdrop-blur-xl shadow-lg transform hover:-translate-y-0.5 transition-all anim-float-2">
+<div class="flex items-center justify-between mb-space-2xs">
+<div class="flex items-center gap-space-xs">
+<div class="w-6 h-6 rounded-full bg-primary-container/20 flex items-center justify-center text-primary font-label-sm text-label-sm font-bold">
+                    S
+                  </div>
+<span class="font-label-md text-label-md text-on-surface">Sarah Lin · Lead Architect</span>
+</div>
+<span class="px-space-2xs py-0.5 rounded bg-surface-container font-code-sm text-code-sm text-on-surface-variant">04:18</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant italic">
+                "We can freeze the migration window before Sunday deployment without blocking downstream webhooks."
+              </p>
+</div>
+<!-- Decision Extracted Action Tag -->
+<div class="p-space-md rounded-xl bg-inverse-surface/95 backdrop-blur-xl text-inverse-on-surface shadow-xl flex items-center gap-space-sm anim-float-1">
+<div class="w-7 h-7 rounded-lg bg-tertiary-container/30 flex items-center justify-center text-tertiary-fixed shrink-0">
+<span class="material-symbols-outlined text-[18px]">task_alt</span>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-sm text-label-sm text-tertiary-fixed tracking-wider uppercase">Auto-Extracted Consensus</span>
+<span class="font-label-md text-label-md text-inverse-on-surface truncate">PostgreSQL 16 selected for transactional edge storage</span>
+</div>
+</div>
+</div>
+<!-- Bottom Testimonial & Credibility Panel -->
+<div class="relative z-10 pt-space-md">
+<div class="p-space-lg rounded-xl bg-surface/90 backdrop-blur-md shadow-md flex flex-col gap-space-xs interactive-lift">
+<div class="flex items-center gap-space-3xs text-secondary mb-space-3xs">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: &quot;FILL&quot; 1;">star</span>
+<span class="font-code-sm text-code-sm text-on-surface-variant ml-space-2xs">Trusted across 4,200+ product teams</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface font-medium leading-snug">
+                “MeetMind turns 45-minute architectural syncs into instant, verified decisions. Zero hallucination, zero wasted synthesis.”
+              </p>
+<div class="flex items-center justify-between mt-space-2xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant font-semibold">
+                  Elena Rostova · VP of Engineering, MindScale
+                </span>
+<span class="font-code-sm text-code-sm text-primary font-medium">9.4 hrs saved/wk</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="w-full bg-surface-container-low py-space-2xl"><div class="max-w-container-max mx-auto px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-lg"><div class="flex items-center gap-space-sm"><img alt="Brand logo. - Primary color: #6366f1
+- Font: geist
+- Mode: dark
+- Roundness: rounded-sm
+" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1U0xZas-gdxM47c5eq8m_C3_rRJPyYQUNABvvqiLTleci033DdEc0c6kEtiw7lUYwhx8njwAzhA7UosR8HrWcheRs7loFtpSXOfMnTqzp2aCmnUp8BCjT5bCh8mVT0FuCtdxrZt8bE4om2oXpJJ3QodZ5jzth-TPjaSO0hiArqGYvSY5ykII3gBB6Qd-eYp_fO_siTzTAjETM0A_b7YNwZka113he6z1R1qKKH-7YOMRiMBVBlA5WC3MSqo"><span class="font-label-md text-label-md text-on-surface">MeetMind AI Intelligence</span></div><p class="font-body-sm text-body-sm text-on-surface-variant">© 2025 MeetMind Inc. Pure synthesis, zero noise.</p><div class="flex items-center gap-space-md"><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Privacy</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Terms</a><a class="font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface transition-colors" href="#">Security</a></div></div></footer>
+
+
+
+</body></html>

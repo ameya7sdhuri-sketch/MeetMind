@@ -1,0 +1,517 @@
+/* MeetMind Primary Custom Stylesheet */
+
+@layer base {
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  body {
+    overscroll-behavior: none;
+  }
+}
+
+/* ====================================================== */
+/* PREMIUM LUXURY DARK THEME OVERRIDES                   */
+/* ====================================================== */
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body,
+html.dark main,
+html.dark .bg-background,
+html.dark .bg-surface {
+  background-color: #0b0f19 !important;
+  color: #f8fafc !important;
+}
+
+html.dark header {
+  background-color: rgba(11, 15, 25, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark footer {
+  background-color: #0f1422 !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Card Surface Overrides */
+html.dark .bg-surface-container-lowest,
+html.dark .bg-surface-container-low,
+html.dark .bg-surface-container,
+html.dark .bg-surface-container-high,
+html.dark .bg-surface-container-highest {
+  background-color: #141b2d !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark .bg-surface-container\/70,
+html.dark .bg-surface-container\/60,
+html.dark .audio-player-card {
+  background-color: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: rgba(99, 102, 241, 0.25) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* 3D Rotating Deck Card Stack */
+.rotating-card {
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.rotating-card.is-active {
+  box-shadow: 0 25px 60px -15px rgba(70, 72, 212, 0.4) !important;
+}
+
+html.dark .rotating-card.is-active {
+  box-shadow: 0 25px 60px -15px rgba(99, 102, 241, 0.45) !important;
+  border-color: rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Text Overrides */
+html.dark .text-on-surface {
+  color: #f8fafc !important;
+}
+
+html.dark .text-on-surface-variant {
+  color: #94a3b8 !important;
+}
+
+/* Key Takeaways & Action Item Cards Dark Mode */
+html.dark .bg-surface-container-low\/60 {
+  background-color: #182238 !important;
+  color: #f8fafc !important;
+}
+
+/* Speaker Badges */
+.speaker-badge-sarah {
+  background-color: #e1e0ff;
+  color: #07006c;
+}
+html.dark .speaker-badge-sarah {
+  background-color: #2e1065 !important;
+  color: #ddd6fe !important;
+}
+
+.speaker-badge-alex {
+  background-color: #acedff;
+  color: #001f26;
+}
+html.dark .speaker-badge-alex {
+  background-color: #042f2e !important;
+  color: #99f6e4 !important;
+}
+
+.speaker-badge-david {
+  background-color: #e2dfff;
+  color: #0f0069;
+}
+html.dark .speaker-badge-david {
+  background-color: #1e293b !important;
+  color: #cbd5e1 !important;
+}
+
+/* Timestamp Badges */
+.timestamp-badge {
+  background-color: rgba(225, 224, 255, 0.5);
+  color: #4648d4;
+}
+html.dark .timestamp-badge {
+  background-color: #1e293b !important;
+  color: #818cf8 !important;
+}
+
+/* Transcript Card Hover */
+.transcript-line {
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.transcript-line:hover {
+  background-color: #f2f3ff;
+  border-color: rgba(70, 72, 212, 0.15);
+}
+html.dark .transcript-line:hover {
+  background-color: #1a243c !important;
+  border-color: rgba(99, 102, 241, 0.25) !important;
+}
+
+/* Form Controls Dark Mode */
+html.dark input,
+html.dark select,
+html.dark textarea {
+  background-color: #0f1422 !important;
+  color: #f8fafc !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+/* Borders Dark Mode */
+html.dark .border-outline-variant\/30,
+html.dark .border-outline-variant\/40,
+html.dark .border-outline-variant\/50,
+html.dark .border-outline-variant\/60 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(118, 117, 134, 0.2);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(70, 72, 212, 0.4);
+}
+
+/* Card Hover Effects */
+.card-hover-effect {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease;
+  border: 1px solid transparent;
+}
+.card-hover-effect:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 30px -10px rgba(70, 72, 212, 0.12);
+  border-color: rgba(70, 72, 212, 0.15);
+}
+
+/* 3D Rotating Deck Cards */
+.rotating-card {
+  transition: transform 0.5s cubic-bezier(0.34, 1.25, 0.64, 1), 
+              opacity 0.4s ease, 
+              box-shadow 0.4s ease, 
+              border-color 0.3s ease !important;
+  will-change: transform, opacity;
+}
+
+.rotating-card.is-active {
+  box-shadow: 0 25px 55px -12px rgba(70, 72, 212, 0.3), 0 0 0 1.5px rgba(70, 72, 212, 0.25) !important;
+}
+
+html.dark .rotating-card.is-active {
+  box-shadow: 0 25px 60px -12px rgba(99, 102, 241, 0.4), 0 0 0 1.5px rgba(129, 140, 248, 0.35) !important;
+}
+
+/* Pagination Dot Buttons Elastic Transition & Glow */
+.deck-dot {
+  outline: none;
+  cursor: pointer;
+  transition: width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.35s ease, 
+              transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.35s ease, 
+              border-color 0.3s ease !important;
+}
+
+.deck-dot:hover {
+  transform: scale(1.3);
+}
+
+.deck-dot.active-dot {
+  width: 2.75rem !important; /* 44px pill width */
+  background: linear-gradient(135deg, #6063ee 0%, #4648d4 100%) !important;
+  box-shadow: 0 0 14px rgba(70, 72, 212, 0.65), 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+}
+
+html.dark .deck-dot.active-dot {
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 100%) !important;
+  box-shadow: 0 0 16px rgba(129, 140, 248, 0.75), 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Button Glow & Shimmer Micro-Animations */
+.btn-glow-effect {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease, 
+              background-color 0.25s ease !important;
+}
+
+.btn-glow-effect::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  transition: left 0.6s ease;
+  pointer-events: none;
+}
+
+.btn-glow-effect:hover::after {
+  left: 130%;
+}
+
+.btn-glow-effect:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 12px 30px -5px rgba(70, 72, 212, 0.5), 0 0 20px rgba(96, 99, 238, 0.35);
+}
+
+.btn-glow-effect:active {
+  transform: translateY(1px) scale(0.97);
+  box-shadow: 0 4px 12px -2px rgba(70, 72, 212, 0.4);
+}
+
+/* Drag and Drop Zone Active State */
+.dropzone-active {
+  border-color: #4648d4 !important;
+  background-color: rgba(96, 99, 238, 0.08) !important;
+  transform: scale(1.01);
+}
+
+/* Audio Player Waveform Container */
+.waveform-container {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  width: 100%;
+}
+
+.waveform-bar {
+  flex: 1;
+  min-width: 3px;
+  background-color: rgba(70, 72, 212, 0.18);
+  border-radius: 4px;
+  transition: height 0.15s ease, background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  transform-origin: bottom;
+}
+
+html.dark .waveform-bar {
+  background-color: rgba(99, 102, 241, 0.2);
+}
+
+.waveform-bar.played {
+  background: linear-gradient(180deg, #6063ee 0%, #4648d4 100%);
+  box-shadow: 0 0 6px rgba(70, 72, 212, 0.3);
+}
+
+html.dark .waveform-bar.played {
+  background: linear-gradient(180deg, #818cf8 0%, #6366f1 100%);
+  box-shadow: 0 0 8px rgba(129, 140, 248, 0.4);
+}
+
+.waveform-bar:hover {
+  background: #6063ee !important;
+  transform: scaleY(1.25);
+  box-shadow: 0 0 10px rgba(96, 99, 238, 0.6);
+}
+
+.waveform-bar.pulse-anim {
+  animation: equalizer-bounce 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes equalizer-bounce {
+  0% { transform: scaleY(0.7); }
+  100% { transform: scaleY(1.3); }
+}
+
+/* Toast Notifications */
+.toast-notification {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background-color: #131b2e;
+  color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transform: translateY(100px);
+  opacity: 0;
+}
+
+.toast-notification.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Active Navigation Marker */
+.nav-link-active {
+  background-color: #eaedff;
+  color: #131b2e;
+  font-weight: 600;
+}
+
+/* ====================================================
+   NAVIGATION & ACTION BUTTON MICRO-ANIMATIONS
+   ==================================================== */
+
+/* Header Navigation Links */
+header nav a,
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.425rem 0.85rem !important;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  flex-shrink: 0 !important;
+  border-radius: 9999px !important;
+  transition: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
+}
+
+header nav a:hover,
+.nav-link:hover {
+  transform: translateY(-1px) scale(1.03);
+  background-color: rgba(70, 72, 212, 0.08) !important;
+  color: #4648d4 !important;
+}
+
+html.dark header nav a:hover,
+html.dark .nav-link:hover {
+  background-color: rgba(99, 102, 241, 0.15) !important;
+  color: #a5b4fc !important;
+}
+
+header nav a:active,
+.nav-link:active {
+  transform: translateY(0.5px) scale(0.97);
+}
+
+/* Active Nav Link Pill Style */
+header nav a.active-nav-item,
+.nav-link-active {
+  background-color: #4648d4 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(70, 72, 212, 0.3) !important;
+}
+
+html.dark header nav a.active-nav-item,
+html.dark .nav-link-active {
+  background-color: #6366f1 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* Primary Action Buttons (Upload a Meeting, Start Free, Ask AI) */
+.btn-primary,
+.btn-glow-effect,
+a.bg-primary,
+button.bg-primary {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  flex-shrink: 0 !important;
+  padding-left: 1.125rem !important;
+  padding-right: 1.125rem !important;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.25s ease, 
+              background-color 0.2s ease !important;
+}
+
+.btn-primary::after,
+.btn-glow-effect::after,
+a.bg-primary::after,
+button.bg-primary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 100%
+  );
+  transform: rotate(25deg);
+  transition: left 0.65s ease;
+  pointer-events: none;
+}
+
+.btn-primary:hover::after,
+.btn-glow-effect:hover::after,
+a.bg-primary:hover::after,
+button.bg-primary:hover::after {
+  left: 140%;
+}
+
+.btn-primary:hover,
+.btn-glow-effect:hover,
+a.bg-primary:hover,
+button.bg-primary:hover {
+  transform: translateY(-2.5px) scale(1.025);
+  box-shadow: 0 12px 28px -4px rgba(70, 72, 212, 0.5), 0 0 18px rgba(96, 99, 238, 0.35) !important;
+}
+
+.btn-primary:active,
+.btn-glow-effect:active,
+a.bg-primary:active,
+button.bg-primary:active {
+  transform: translateY(1px) scale(0.965);
+  box-shadow: 0 4px 10px -2px rgba(70, 72, 212, 0.4) !important;
+}
+
+/* Secondary Action Buttons (Explore Demo, Sign In, Export Notes) */
+.btn-secondary,
+a.bg-surface-container-lowest,
+button.bg-surface-container-lowest {
+  transition: transform 0.28s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              background-color 0.2s ease, 
+              box-shadow 0.25s ease, 
+              border-color 0.2s ease !important;
+}
+
+.btn-secondary:hover,
+a.bg-surface-container-lowest:hover,
+button.bg-surface-container-lowest:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(70, 72, 212, 0.2) !important;
+}
+
+.btn-secondary:active,
+a.bg-surface-container-lowest:active,
+button.bg-surface-container-lowest:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+/* Button Icon Micro-Animations */
+button:hover .material-symbols-outlined,
+a:hover .material-symbols-outlined {
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+a:hover .material-symbols-outlined[class*="arrow_forward"],
+button:hover .material-symbols-outlined[class*="arrow_forward"] {
+  transform: translateX(3px);
+}
+
+a:hover .material-symbols-outlined[class*="play_circle"],
+button:hover .material-symbols-outlined[class*="play_circle"] {
+  transform: scale(1.15) rotate(5deg);
+}
+
+a:hover .material-symbols-outlined[class*="download"],
+button:hover .material-symbols-outlined[class*="download"] {
+  transform: translateY(2px);
+}

@@ -1,0 +1,24 @@
+# Compiled Java outputs & Maven targets
+**/target/
+*.class
+*.jar
+*.war
+
+# Environment & Secret files
+.env
+.env.local
+*.env
+
+# IDE / System files
+.idea/
+.vscode/
+*.swp
+*.DS_Store
+Thumbs.db
+
+# Node / Scratch / Logs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.system_generated/
