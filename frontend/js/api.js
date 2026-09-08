@@ -137,25 +137,57 @@ class MeetMindAPI {
   }
 
   /**
-   * Mock AI Assistant Response Generator
+  /**
+   * Smart Client-Side AI Response Generator (Fallback Mode for Static Deployments)
    */
   static generateMockAIResponse(question) {
-    const q = question.toLowerCase();
-    let answer = "";
-    let citations = ["04:12", "08:30", "23:10"];
+    const raw = localStorage.getItem('current_meeting_analysis') || sessionStorage.getItem('current_meeting_analysis');
+    let meetingData = null;
+    try { if (raw) meetingData = JSON.parse(raw); } catch (e) {}
 
-    if (q.includes("decision") || q.includes("summarize")) {
-      answer = "The primary decisions made in this meeting were:\n\n1. **Vanilla JS & HTML5 Frontend**: Adopting framework-free vanilla code to strictly implement the Stitch design spec.\n2. **Spring Boot Backend**: Proxying AI services via Spring Boot REST APIs so secret keys are never exposed in browser JavaScript.\n3. **Supabase Authentication**: Utilizing Supabase for signup, login, and user sessions.\n4. **Zero Meeting Persistence**: Processing recordings in memory/session state without saving database records.";
-      citations = ["01:45", "08:30", "23:10"];
-    } else if (q.includes("task") || q.includes("action item")) {
-      answer = "Here are the assigned action items from the call:\n\n• **Alex Rivera**: Finalize Spring Boot CORS & Security config.\n• **Sarah Jenkins**: Integrate Supabase Auth client & write deployment docs.\n• **David Chen**: Build drag-and-drop upload stage progress in upload.html.";
-      citations = ["35:40", "41:00"];
-    } else if (q.includes("auth") || q.includes("login") || q.includes("supabase")) {
-      answer = "Supabase Auth is selected for user authentication. It manages user signup, login, and session tokens. Users can create accounts and log in before accessing the MeetMind dashboard.";
-      citations = ["14:15"];
-    } else {
-      answer = `Based on the meeting transcript, the team emphasized clean architecture, responsive design, fast performance, and secure Spring Boot REST API integration for "${question}". All AI processing is handled safely on the backend.`;
-      citations = ["08:30", "14:15"];
+    if (!meetingData) {
+      meetingData = this.generateMockAnalysis("Recorded_Meeting.mp3");
+    }
+
+    const q = (question || '').toLowerCase();
+    let answer = "";
+    let citations = [];
+
+    // Search user's actual transcript lines if present
+    if (meetingData.transcript && meetingData.transcript.length > 0) {
+      const keywords = q.split(' ').filter(w => w.length > 3);
+      const matchingLines = meetingData.transcript.filter(line => {
+        const textLower = (line.text || '').toLowerCase();
+        const speakerLower = (line.speaker || '').toLowerCase();
+        return keywords.some(word => textLower.includes(word) || speakerLower.includes(word));
+      });
+
+      if (matchingLines.length > 0) {
+        citations = matchingLines.slice(0, 3).map(l => l.timestamp);
+        const excerpt = matchingLines.slice(0, 3).map(l => `• **${l.speaker}** [${l.timestamp}]: "${l.text}"`).join('\n');
+        answer = `Based on your meeting transcript (*${meetingData.title || meetingData.fileName || 'Uploaded Meeting'}*), here are the relevant discussion points:\n\n${excerpt}`;
+      }
+    }
+
+    if (!answer) {
+      if (q.includes("decision") || q.includes("summarize") || q.includes("summary")) {
+        answer = `**Meeting Summary & Key Highlights** (*${meetingData.title || 'Meeting Workspace'}*):\n\n${meetingData.summary || 'The team discussed key deliverables and agreed on action items.'}`;
+        if (meetingData.keyTakeaways && meetingData.keyTakeaways.length > 0) {
+          answer += `\n\n**Key Takeaways:**\n` + meetingData.keyTakeaways.map(k => `• ${k}`).join('\n');
+        }
+        citations = meetingData.transcript ? meetingData.transcript.slice(0, 2).map(t => t.timestamp) : ["00:00"];
+      } else if (q.includes("task") || q.includes("action") || q.includes("todo") || q.includes("assigned")) {
+        if (meetingData.actionItems && meetingData.actionItems.length > 0) {
+          const items = meetingData.actionItems.map(item => `• **${item.assignee || 'Unassigned'}**: ${item.text} (${item.completed ? 'Completed' : 'Pending'})`).join('\n');
+          answer = `Here are the assigned action items from your call:\n\n${items}`;
+        } else {
+          answer = "No explicit action items were flagged for this meeting.";
+        }
+        citations = meetingData.transcript ? meetingData.transcript.slice(-2).map(t => t.timestamp) : ["01:00"];
+      } else {
+        answer = `Based on your indexed transcript (*${meetingData.title || 'Meeting Workspace'}*), here is the summary of topics discussed:\n\n"${meetingData.summary || 'The team reviewed meeting goals, technology migration, and sprint deliverables.'}"`;
+        citations = meetingData.transcript ? meetingData.transcript.slice(0, 2).map(t => t.timestamp) : ["00:00"];
+      }
     }
 
     return {
